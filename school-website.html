@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunrise International School — Excellence in Education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0d2b52;--navy2:#163a6b;--gold:#e8a020;--gold2:#f5c04a;--sky:#e8f4fd;--sky2:#d0e9f8;--white:#ffffff;--off:#f7fafd;--text:#1a2e45;--muted:#6b82a0;--radius:14px;--shadow:0 8px 40px rgba(13,43,82,.10);--shadow2:0 24px 60px rgba(13,43,82,.18);--tr:all .35s cubic-bezier(.23,1,.32,1)}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+img{display:block;max-width:100%}a{text-decoration:none;color:inherit}ul{list-style:none}button{font-family:inherit;cursor:pointer;border:none;outline:none;background:none}
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+.stag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);background:rgba(232,160,32,.1);border:1px solid rgba(232,160,32,.3);padding:5px 14px;border-radius:100px;margin-bottom:14px}
+.stitle{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:700;line-height:1.15;color:var(--navy);margin-bottom:12px}
+.ssub{font-size:1.02rem;color:var(--muted);line-height:1.8;max-width:540px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:50px;font-size:.9rem;font-weight:600;letter-spacing:.02em;transition:var(--tr);border:none;cursor:pointer}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;box-shadow:0 4px 20px rgba(232,160,32,.38)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(232,160,32,.48)}
+.btn-outline-w{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7)}
+.btn-outline-w:hover{background:#fff;color:var(--navy)}
+.reveal{opacity:0;transform:translateY(38px);transition:opacity .75s cubic-bezier(.23,1,.32,1),transform .75s cubic-bezier(.23,1,.32,1)}
+.reveal.rl{transform:translateX(-42px)}.reveal.rr{transform:translateX(42px)}
+.reveal.on{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.38s}.d5{transition-delay:.48s}
+/* NAVBAR */
+#nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:18px 0;transition:var(--tr)}
+#nav.scrolled{background:rgba(255,255,255,.97);backdrop-filter:blur(18px);box-shadow:0 2px 24px rgba(13,43,82,.09);padding:11px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:13px}
+.logo-icon{width:46px;height:46px;background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.logo-name{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:700;color:#fff;line-height:1.2;transition:var(--tr)}
+.logo-sub{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);transition:var(--tr)}
+#nav.scrolled .logo-name{color:var(--navy)}#nav.scrolled .logo-sub{color:var(--muted)}
+.nav-links{display:flex;align-items:center;gap:2rem}
+.nav-links a{font-size:.87rem;font-weight:500;color:rgba(255,255,255,.88);transition:var(--tr);position:relative;padding-bottom:3px}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--gold);border-radius:2px;transition:width .3s}
+.nav-links a:hover::after,.nav-links a.act::after{width:100%}
+#nav.scrolled .nav-links a{color:var(--muted)}
+#nav.scrolled .nav-links a:hover{color:var(--navy)}
+.nav-admit{background:var(--gold);color:#fff;padding:9px 22px;border-radius:50px;font-size:.85rem;font-weight:600;transition:var(--tr);box-shadow:0 3px 14px rgba(232,160,32,.42)}
+.nav-admit:hover{background:var(--gold2);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:4px;cursor:pointer}
+.hamburger span{width:25px;height:2.5px;background:#fff;border-radius:2px;transition:var(--tr)}
+#nav.scrolled .hamburger span{background:var(--navy)}
+.mob-menu{display:none;position:fixed;inset:0;background:var(--navy);z-index:800;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:'Playfair Display',serif;font-size:1.8rem;color:#fff;font-weight:600;transition:var(--tr)}
+.mob-menu a:hover{color:var(--gold)}.mob-close{position:absolute;top:24px;right:28px;font-size:2rem;color:#fff;cursor:pointer}
+/* HERO */
+#hero{position:relative;height:100vh;min-height:620px;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;display:flex;align-items:center}
+.slide.active{opacity:1;z-index:2}
+.slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 6s ease;transform:scale(1.04)}
+.slide.active .slide-bg{transform:scale(1)}
+.slide-ov{position:absolute;inset:0;background:linear-gradient(120deg,rgba(13,43,82,.82) 0%,rgba(13,43,82,.45) 60%,rgba(13,43,82,.15) 100%)}
+.slide-content{position:relative;z-index:3;max-width:700px;padding:0 28px;margin-left:8%}
+.sl-tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold2);background:rgba(232,160,32,.18);border:1px solid rgba(232,160,32,.4);padding:5px 14px;border-radius:100px;margin-bottom:20px;opacity:0;transform:translateY(20px);transition:all .7s .3s}
+.sl-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5.5vw,4.4rem);font-weight:900;color:#fff;line-height:1.1;margin-bottom:18px;opacity:0;transform:translateY(28px);transition:all .7s .5s}
+.sl-sub{font-size:1.08rem;color:rgba(255,255,255,.82);line-height:1.75;margin-bottom:30px;max-width:520px;opacity:0;transform:translateY(20px);transition:all .7s .7s}
+.sl-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;transform:translateY(20px);transition:all .7s .9s}
+.slide.active .sl-tag,.slide.active .sl-title,.slide.active .sl-sub,.slide.active .sl-btns{opacity:1;transform:none}
+.hero-dots{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10}
+.hero-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.4);border:none;transition:var(--tr);cursor:pointer}
+.hero-dot.active{background:#fff;width:28px;border-radius:6px}
+.hero-arr{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:var(--tr);backdrop-filter:blur(8px)}
+.hero-arr:hover{background:rgba(255,255,255,.3)}.hero-prev{left:24px}.hero-next{right:24px}
+.hero-scroll{position:absolute;bottom:38px;right:60px;display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.6);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;z-index:10}
+.scroll-line{width:36px;height:1px;background:rgba(255,255,255,.4)}
+.scroll-dot{width:8px;height:8px;border:2px solid rgba(255,255,255,.5);border-radius:50%;animation:sbob 2s ease-in-out infinite}
+@keyframes sbob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+/* TICKER */
+.ticker-bar{background:var(--navy);padding:11px 0;overflow:hidden}
+.ticker-inner{display:flex;align-items:center}
+.ticker-lbl{background:var(--gold);color:#fff;padding:4px 18px;font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;border-radius:4px;margin-right:20px;flex-shrink:0}
+.ticker-track{display:flex;animation:tsroll 28s linear infinite;white-space:nowrap}
+.ticker-track:hover{animation-play-state:paused}
+.ticker-item{font-size:.82rem;color:rgba(255,255,255,.82);padding:0 32px;position:relative}
+.ticker-item::before{content:'★';position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--gold2);font-size:.6rem}
+@keyframes tsroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* ABOUT */
+#about{padding:110px 0;background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;margin-top:60px}
+.about-imgs{position:relative;height:500px}
+.aimg1{position:absolute;top:0;left:0;width:72%;height:380px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow2)}
+.aimg2{position:absolute;bottom:0;right:0;width:58%;height:280px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow2);border:5px solid #fff}
+.about-badge{position:absolute;top:52%;left:58%;background:var(--gold);color:#fff;padding:18px 22px;border-radius:14px;text-align:center;box-shadow:0 10px 30px rgba(232,160,32,.4);z-index:2}
+.about-badge strong{font-size:2rem;font-weight:900;display:block;line-height:1}
+.about-badge small{font-size:.75rem;font-weight:600;opacity:.9}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
+.stat-box{background:var(--off);border-radius:12px;padding:22px 18px;text-align:center;border:1px solid var(--sky2);transition:var(--tr)}
+.stat-box:hover{background:var(--navy);transform:translateY(-4px);box-shadow:var(--shadow)}
+.stat-box:hover .stat-n,.stat-box:hover .stat-l{color:#fff}
+.stat-n{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--navy);line-height:1}
+.stat-l{font-size:.8rem;color:var(--muted);margin-top:5px;font-weight:500}
+.val-list{margin-top:28px;display:flex;flex-direction:column;gap:11px}
+.val-item{display:flex;align-items:center;gap:13px;padding:13px 17px;background:var(--sky);border-radius:10px;font-size:.92rem;font-weight:500;border-left:3px solid var(--gold)}
+/* FACILITIES */
+#facilities{padding:110px 0;background:var(--off)}
+.fac-head{text-align:center;margin-bottom:56px}.fac-head .ssub{margin:0 auto}
+.fac-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.fac-card{background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:var(--tr);position:relative;cursor:default}
+.fac-card:hover{transform:translateY(-10px);box-shadow:var(--shadow2)}
+.fac-img{height:200px;overflow:hidden;position:relative}
+.fac-img-inner{width:100%;height:100%;background-size:cover;background-position:center;transition:transform .6s cubic-bezier(.23,1,.32,1)}
+.fac-card:hover .fac-img-inner{transform:scale(1.08)}
+.fac-img-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,43,82,.5),transparent)}
+.fac-body{padding:22px 20px 24px}
+.fac-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--sky),var(--sky2));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:12px}
+.fac-name{font-family:'Playfair Display',serif;font-size:1.08rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.fac-desc{font-size:.85rem;color:var(--muted);line-height:1.65}
+.fac-ctag{position:absolute;top:14px;left:14px;background:var(--gold);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:6px}
+/* ACADEMICS */
+#academics{padding:110px 0;background:var(--white)}
+.acad-layout{display:grid;grid-template-columns:1fr 1.4fr;gap:70px;align-items:start;margin-top:56px}
+.acad-tabs{display:flex;flex-direction:column;gap:10px}
+.acad-tab{display:flex;align-items:center;gap:16px;padding:18px 22px;border-radius:12px;border:2px solid var(--sky2);cursor:pointer;transition:var(--tr);background:#fff}
+.acad-tab.active,.acad-tab:hover{border-color:var(--navy);background:var(--navy)}
+.acad-tab.active .at-icon,.acad-tab:hover .at-icon{background:rgba(255,255,255,.15);color:#fff}
+.acad-tab.active .at-title,.acad-tab:hover .at-title{color:#fff}
+.acad-tab.active .at-sub,.acad-tab:hover .at-sub{color:rgba(255,255,255,.7)}
+.at-icon{width:44px;height:44px;border-radius:10px;background:var(--sky);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;transition:var(--tr)}
+.at-title{font-weight:700;font-size:.97rem;color:var(--navy);transition:var(--tr)}
+.at-sub{font-size:.8rem;color:var(--muted);margin-top:3px;transition:var(--tr)}
+.acad-panel{display:none;animation:fdIn .4s ease}.acad-panel.active{display:block}
+@keyframes fdIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.panel-hdr{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:30px;border-radius:var(--radius);margin-bottom:22px}
+.panel-ptag{font-size:.7rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold2);margin-bottom:8px}
+.panel-ttl{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;margin-bottom:8px}
+.panel-dsc{font-size:.9rem;opacity:.82;line-height:1.7}
+.panel-subjs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.subj-item{display:flex;align-items:center;gap:10px;background:#fff;padding:12px 14px;border-radius:10px;border:1px solid var(--sky2);font-size:.88rem;font-weight:500}
+.subj-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.panel-feats{display:flex;flex-wrap:wrap;gap:8px}
+.pf-tag{background:var(--sky);color:var(--navy2);font-size:.78rem;font-weight:600;padding:6px 14px;border-radius:50px}
+/* GALLERY */
+#gallery{padding:110px 0;background:var(--off)}
+.gal-head{text-align:center;margin-bottom:50px}.gal-head .ssub{margin:0 auto}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,220px);gap:14px}
+.gal-item{border-radius:12px;overflow:hidden;position:relative;cursor:pointer}
+.gal-item:first-child{grid-column:span 2;grid-row:span 2}
+.gal-item:nth-child(4){grid-column:span 2}
+.gbg{width:100%;height:100%;background-size:cover;background-position:center;transition:transform .5s cubic-bezier(.23,1,.32,1)}
+.gal-item:hover .gbg{transform:scale(1.07)}
+.gal-ov{position:absolute;inset:0;background:rgba(13,43,82,0);transition:var(--tr);display:flex;align-items:center;justify-content:center}
+.gal-item:hover .gal-ov{background:rgba(13,43,82,.45)}
+.gal-zoom{color:#fff;font-size:1.6rem;opacity:0;transform:scale(.7);transition:var(--tr)}
+.gal-item:hover .gal-zoom{opacity:1;transform:scale(1)}
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;display:none;align-items:center;justify-content:center}
+#lightbox.open{display:flex}
+#lb-img{max-width:90vw;max-height:88vh;border-radius:10px;object-fit:contain}
+#lb-close{position:absolute;top:22px;right:28px;color:#fff;font-size:2rem;cursor:pointer;background:none;border:none;line-height:1}
+#lb-prev,#lb-next{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:2rem;cursor:pointer;background:rgba(255,255,255,.12);border:none;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:var(--tr)}
+#lb-prev:hover,#lb-next:hover{background:rgba(255,255,255,.25)}
+#lb-prev{left:20px}#lb-next{right:20px}
+.gal-carousel{margin-top:24px;overflow:hidden}
+.gal-track{display:flex;gap:16px;transition:transform .5s cubic-bezier(.23,1,.32,1)}
+.gal-ci{flex-shrink:0;width:240px;height:170px;border-radius:12px;overflow:hidden;cursor:pointer}
+.gal-ci .gbg{height:100%}
+/* TESTIMONIALS */
+#testimonials{padding:110px 0;background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);position:relative;overflow:hidden}
+#testimonials::before{content:'';position:absolute;top:-80px;right:-80px;width:360px;height:360px;background:rgba(232,160,32,.07);border-radius:50%}
+#testimonials::after{content:'';position:absolute;bottom:-60px;left:-60px;width:260px;height:260px;background:rgba(232,160,32,.05);border-radius:50%}
+.test-head{text-align:center;margin-bottom:56px}
+.test-head .stitle{color:#fff}.test-head .ssub{color:rgba(255,255,255,.65);margin:0 auto}
+.test-wrap{overflow:hidden;position:relative}
+.test-track{display:flex;transition:transform .6s cubic-bezier(.23,1,.32,1)}
+.test-card{flex-shrink:0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:34px;backdrop-filter:blur(10px);margin:0 12px}
+.test-stars{color:var(--gold2);font-size:1rem;margin-bottom:18px;letter-spacing:3px}
+.test-quote{font-size:1.05rem;color:rgba(255,255,255,.88);line-height:1.8;margin-bottom:22px;font-style:italic;position:relative;padding-left:22px}
+.test-quote::before{content:'"';position:absolute;left:0;top:-6px;font-family:'Playfair Display',serif;font-size:3rem;color:var(--gold);opacity:.5;line-height:1}
+.test-author{display:flex;align-items:center;gap:14px}
+.test-av{width:50px;height:50px;border-radius:50%;background:rgba(232,160,32,.2);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.test-name{font-weight:700;color:#fff;font-size:.95rem}
+.test-role{font-size:.8rem;color:rgba(255,255,255,.55);margin-top:3px}
+.test-dots{display:flex;justify-content:center;gap:10px;margin-top:34px}
+.test-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25);border:none;cursor:pointer;transition:var(--tr)}
+.test-dot.active{background:var(--gold);width:28px;border-radius:6px}
+/* EVENTS */
+#events{padding:110px 0;background:var(--white)}
+.ev-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;margin-top:56px}
+.ev-cards{display:flex;flex-direction:column;gap:18px}
+.ev-card{display:flex;gap:20px;padding:22px;border-radius:14px;border:1px solid var(--sky2);background:#fff;transition:var(--tr);align-items:flex-start}
+.ev-card:hover{border-color:var(--navy);box-shadow:var(--shadow);transform:translateX(6px)}
+.ev-date{width:56px;height:64px;background:var(--navy);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0}
+.ev-day{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:#fff;line-height:1}
+.ev-mo{font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);margin-top:3px}
+.ev-ttl{font-weight:700;font-size:.97rem;color:var(--navy);margin-bottom:5px}
+.ev-dsc{font-size:.84rem;color:var(--muted);line-height:1.6}
+.ev-meta{display:flex;gap:14px;margin-top:8px;flex-wrap:wrap}
+.ev-meta span{font-size:.76rem;color:var(--muted)}
+.ann-panel{background:var(--off);border-radius:var(--radius);padding:28px;border:1px solid var(--sky2)}
+.ann-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--navy);margin-bottom:20px;padding-bottom:14px;border-bottom:2px solid var(--sky2)}
+.ann-list{display:flex;flex-direction:column;gap:14px}
+.ann-item{display:flex;gap:14px;padding:14px;background:#fff;border-radius:10px;border-left:3px solid var(--gold);transition:var(--tr)}
+.ann-item:hover{transform:translateX(4px);box-shadow:0 4px 16px rgba(13,43,82,.07)}
+.ann-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.ann-txt{font-size:.88rem;color:var(--text);line-height:1.6;font-weight:500}
+.ann-date{font-size:.76rem;color:var(--muted);margin-top:4px}
+.ntag{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:6px;margin-bottom:5px;display:inline-block}
+/* CONTACT */
+#contact{padding:110px 0;background:var(--off)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;margin-top:56px;align-items:start}
+.ci-cards{display:flex;flex-direction:column;gap:18px}
+.ci-card{background:#fff;border-radius:14px;padding:22px;border:1px solid var(--sky2);display:flex;gap:17px;align-items:flex-start;transition:var(--tr)}
+.ci-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.ci-icon{width:48px;height:48px;border-radius:11px;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.ci-lbl{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.ci-val{font-size:.97rem;font-weight:600;color:var(--navy);line-height:1.5}
+.map-wrap{border-radius:14px;overflow:hidden;margin-top:20px;border:3px solid #fff;box-shadow:var(--shadow)}
+.cf-box{background:#fff;border-radius:18px;padding:36px;box-shadow:var(--shadow2);border:1px solid var(--sky2)}
+.cf-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--navy);margin-bottom:5px}
+.cf-sub{font-size:.87rem;color:var(--muted);margin-bottom:26px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:7px}
+.fg input,.fg textarea,.fg select{width:100%;padding:12px 16px;border:2px solid var(--sky2);border-radius:10px;font-family:inherit;font-size:.9rem;color:var(--text);background:var(--off);transition:var(--tr);outline:none}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--navy);background:#fff;box-shadow:0 0 0 4px rgba(13,43,82,.07)}
+.fg textarea{resize:vertical;min-height:110px}
+.cf-submit{width:100%;padding:14px;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border-radius:10px;font-size:.95rem;font-weight:700;letter-spacing:.04em;transition:var(--tr);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px}
+.cf-submit:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(13,43,82,.35)}
+.cf-ok{display:none;text-align:center;padding:18px;background:rgba(39,174,96,.08);border-radius:10px;border:1px solid rgba(39,174,96,.25);color:#1a7c3e;font-weight:600;margin-top:14px}
+/* NEWSLETTER */
+#newsletter{padding:80px 0;background:linear-gradient(135deg,var(--gold) 0%,var(--gold2) 100%)}
+.nl-inner{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.nl-text .stitle{color:#fff;margin-bottom:8px;font-size:clamp(1.5rem,3vw,2rem)}
+.nl-text p{color:rgba(255,255,255,.85);font-size:1rem}
+.nl-form{display:flex;background:#fff;border-radius:50px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.15);flex:1;max-width:460px}
+.nl-inp{flex:1;padding:15px 22px;border:none;outline:none;font-family:inherit;font-size:.9rem;color:var(--text)}
+.nl-btn{background:var(--navy);color:#fff;padding:15px 26px;font-weight:700;font-size:.88rem;border:none;cursor:pointer;white-space:nowrap;transition:var(--tr)}
+.nl-btn:hover{background:var(--navy2)}
+/* FOOTER */
+footer{background:var(--navy);padding:80px 0 0}
+.fg-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:50px;margin-bottom:60px}
+.ft-about{font-size:.88rem;line-height:1.8;margin:16px 0 24px;color:rgba(255,255,255,.6)}
+.social-row{display:flex;gap:12px}
+.soc-btn{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:var(--tr)}
+.soc-btn:hover{background:var(--gold);border-color:var(--gold);transform:translateY(-2px)}
+.ft-col-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid rgba(232,160,32,.35)}
+.ft-links{display:flex;flex-direction:column;gap:10px}
+.ft-links a{font-size:.86rem;color:rgba(255,255,255,.55);transition:var(--tr);display:flex;align-items:center;gap:8px}
+.ft-links a::before{content:'›';color:var(--gold);font-size:1rem}
+.ft-links a:hover{color:#fff;transform:translateX(4px)}
+.fci{display:flex;gap:12px;font-size:.85rem;color:rgba(255,255,255,.6);align-items:flex-start;line-height:1.5;margin-bottom:12px}
+.ft-bottom{border-top:1px solid rgba(255,255,255,.08);padding:22px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.ft-bottom p{font-size:.82rem;color:rgba(255,255,255,.4)}
+.ft-bottom a{color:var(--gold2)}
+/* FLOATING */
+#wa-btn{position:fixed;bottom:30px;right:30px;z-index:500;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 24px rgba(37,211,102,.45);animation:fltw 3s ease-in-out infinite;text-decoration:none}
+@keyframes fltw{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+#wa-btn::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:2px solid rgba(37,211,102,.3);animation:wapulse 2s ease-out infinite}
+@keyframes wapulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.5);opacity:0}}
+#stbtn{position:fixed;bottom:102px;right:30px;z-index:500;width:46px;height:46px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow);transition:var(--tr);opacity:0;pointer-events:none;border:none;cursor:pointer;font-size:1rem}
+#stbtn.show{opacity:1;pointer-events:auto}
+#stbtn:hover{background:var(--navy2);transform:translateY(-2px)}
+/* RESPONSIVE */
+@media(max-width:1024px){.fac-grid{grid-template-columns:repeat(2,1fr)}.about-grid{gap:40px}.fg-grid{grid-template-columns:1fr 1fr;gap:36px}.acad-layout{grid-template-columns:1fr}}
+@media(max-width:768px){.nav-links,.nav-admit{display:none}.hamburger{display:flex}.about-grid{grid-template-columns:1fr}.about-imgs{height:320px;margin-bottom:20px}.aimg1{width:80%;height:240px}.aimg2{width:62%;height:180px}.ev-layout{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.gal-item:first-child{grid-column:span 2;grid-row:span 1}.gal-item:nth-child(4){grid-column:span 2}.nl-inner{flex-direction:column;text-align:center}.nl-form{max-width:100%;width:100%}.fg-grid{grid-template-columns:1fr}.ft-bottom{flex-direction:column;text-align:center}.form-row{grid-template-columns:1fr}.hero-scroll{display:none}.slide-content{margin-left:0;padding:0 22px}}
+@media(max-width:480px){.fac-grid{grid-template-columns:1fr}.about-stats{grid-template-columns:repeat(3,1fr)}.gal-grid{grid-template-columns:1fr}.gal-item:first-child,.gal-item:nth-child(4){grid-column:span 1}.hero-arr{display:none}}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="nav">
+  <div class="nav-inner container">
+    <div class="nav-logo">
+      <div class="logo-icon">🎓</div>
+      <div>
+        <div class="logo-name">Sunrise International</div>
+        <div class="logo-sub">School of Excellence</div>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#facilities">Facilities</a></li>
+      <li><a href="#academics">Academics</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-admit">Admissions Open</a>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="toggleMenu()">✕</button>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#facilities" onclick="toggleMenu()">Facilities</a>
+  <a href="#academics" onclick="toggleMenu()">Academics</a>
+  <a href="#gallery" onclick="toggleMenu()">Gallery</a>
+  <a href="#events" onclick="toggleMenu()">Events</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#contact" class="btn btn-gold" onclick="toggleMenu()">Admissions Open →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="slide active" id="sl0">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1600&q=80&auto=format&fit=crop')"></div>
+    <div class="slide-ov"></div>
+    <div class="slide-content">
+      <div class="sl-tag">Admissions Open 2025–26</div>
+      <h1 class="sl-title">Where Every Child<br>Finds Their Brilliance</h1>
+      <p class="sl-sub">Nurturing curious minds, building confident leaders, and creating a future-ready generation through world-class education.</p>
+      <div class="sl-btns"><a href="#contact" class="btn btn-gold">Apply Now ✦</a><a href="#about" class="btn btn-outline-w">Discover More</a></div>
+    </div>
+  </div>
+  <div class="slide" id="sl1">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1600&q=80&auto=format&fit=crop')"></div>
+    <div class="slide-ov"></div>
+    <div class="slide-content">
+      <div class="sl-tag">World-Class Facilities</div>
+      <h1 class="sl-title">Learning Spaces Built<br>for Tomorrow</h1>
+      <p class="sl-sub">State-of-the-art labs, smart classrooms, and expansive libraries designed to inspire every learner on campus.</p>
+      <div class="sl-btns"><a href="#facilities" class="btn btn-gold">Explore Campus ✦</a><a href="#contact" class="btn btn-outline-w">Book a Visit</a></div>
+    </div>
+  </div>
+  <div class="slide" id="sl2">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1600&q=80&auto=format&fit=crop')"></div>
+    <div class="slide-ov"></div>
+    <div class="slide-content">
+      <div class="sl-tag">Excellence in Sports & Arts</div>
+      <h1 class="sl-title">Beyond the Classroom,<br>Beyond Limits</h1>
+      <p class="sl-sub">Holistic development through sports, arts, music, and co-curriculars that shape well-rounded individuals.</p>
+      <div class="sl-btns"><a href="#academics" class="btn btn-gold">Our Programs ✦</a><a href="#gallery" class="btn btn-outline-w">View Gallery</a></div>
+    </div>
+  </div>
+  <div class="slide" id="sl3">
+    <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1588072432836-e10032774350?w=1600&q=80&auto=format&fit=crop')"></div>
+    <div class="slide-ov"></div>
+    <div class="slide-content">
+      <div class="sl-tag">Expert Faculty</div>
+      <h1 class="sl-title">Guided by the Best,<br>Inspired to Achieve</h1>
+      <p class="sl-sub">Over 120 experienced educators dedicated to personalised learning and every student's success.</p>
+      <div class="sl-btns"><a href="#contact" class="btn btn-gold">Meet Our Team ✦</a><a href="#about" class="btn btn-outline-w">Our Story</a></div>
+    </div>
+  </div>
+  <button class="hero-arr hero-prev" onclick="heroSlide(-1)">&#8592;</button>
+  <button class="hero-arr hero-next" onclick="heroSlide(1)">&#8594;</button>
+  <div class="hero-dots" id="heroDots"></div>
+  <div class="hero-scroll"><div class="scroll-dot"></div><div class="scroll-line"></div>Scroll to explore</div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="container"><div class="ticker-inner">
+    <div class="ticker-lbl">📢 Latest</div>
+    <div class="ticker-track">
+      <span class="ticker-item">Annual Sports Day — March 28, 2025</span>
+      <span class="ticker-item">Result Declaration — Class X &amp; XII on April 5</span>
+      <span class="ticker-item">Admissions Open for 2025–26 Academic Year</span>
+      <span class="ticker-item">Science Olympiad Winners — Congratulations!</span>
+      <span class="ticker-item">New Digital Library Now Open to All Students</span>
+      <span class="ticker-item">Summer Camp Registration Now Open</span>
+      <span class="ticker-item">Annual Sports Day — March 28, 2025</span>
+      <span class="ticker-item">Result Declaration — Class X &amp; XII on April 5</span>
+      <span class="ticker-item">Admissions Open for 2025–26 Academic Year</span>
+      <span class="ticker-item">Science Olympiad Winners — Congratulations!</span>
+      <span class="ticker-item">New Digital Library Now Open to All Students</span>
+      <span class="ticker-item">Summer Camp Registration Now Open</span>
+    </div>
+  </div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-imgs reveal rl">
+        <img class="aimg1" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80&auto=format&fit=crop" alt="Students learning">
+        <img class="aimg2" src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=600&q=80&auto=format&fit=crop" alt="Classroom">
+        <div class="about-badge"><strong>25+</strong><small>Years of<br>Excellence</small></div>
+      </div>
+      <div class="reveal rr">
+        <div class="stag">About Us</div>
+        <h2 class="stitle">A Legacy of Learning,<br>A Vision for the Future</h2>
+        <p class="ssub">Founded in 1999, Sunrise International School has been shaping young minds with a perfect blend of academic excellence, character building, and holistic development. We believe every child is born with unique potential waiting to be unlocked.</p>
+        <div class="val-list">
+          <div class="val-item">🏆&nbsp; CBSE Affiliated School — Grade 1 to 12</div>
+          <div class="val-item">🌍&nbsp; International curriculum with a global perspective</div>
+          <div class="val-item">💡&nbsp; Smart classrooms with AI-integrated learning</div>
+          <div class="val-item">🤝&nbsp; 100% parent satisfaction — 3 years running</div>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box reveal d1"><div class="stat-n" data-count="3200">0</div><div class="stat-l">Students Enrolled</div></div>
+          <div class="stat-box reveal d2"><div class="stat-n" data-count="120">0</div><div class="stat-l">Expert Faculty</div></div>
+          <div class="stat-box reveal d3"><div class="stat-n" data-count="25">0</div><div class="stat-l">Years of Excellence</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FACILITIES -->
+<section id="facilities">
+  <div class="container">
+    <div class="fac-head reveal">
+      <div class="stag">Our Facilities</div>
+      <h2 class="stitle">World-Class Infrastructure</h2>
+      <p class="ssub">Every space is designed to inspire learning, creativity, and growth.</p>
+    </div>
+    <div class="fac-grid">
+      <div class="fac-card reveal d1"><div class="fac-img"><div class="fac-img-inner" style="background-image:url('https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=600&q=80')"></div><div class="fac-img-ov"></div></div><div class="fac-ctag">Science</div><div class="fac-body"><div class="fac-icon">🔬</div><div class="fac-name">Science Labs</div><div class="fac-desc">Fully equipped Physics, Chemistry and Biology labs with modern instruments for hands-on experiments.</div></div></div>
+      <div class="fac-card reveal d2"><div class="fac-img"><div class="fac-img-inner" style="background-image:url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=600&q=80')"></div><div class="fac-img-ov"></div></div><div class="fac-ctag">Knowledge</div><div class="fac-body"><div class="fac-icon">📚</div><div class="fac-name">Digital Library</div><div class="fac-desc">A vast collection of 20,000+ books, e-resources, periodicals, and digital databases for all grades.</div></div></div>
+      <div class="fac-card reveal d3"><div class="fac-img"><div class="fac-img-inner" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80')"></div><div class="fac-img-ov"></div></div><div class="fac-ctag">Sports</div><div class="fac-body"><div class="fac-icon">⚽</div><div class="fac-name">Sports Complex</div><div class="fac-desc">Olympic-size pool, cricket ground, basketball and tennis courts, and a fully equipped gymnasium.</div></div></div>
+      <div class="fac-card reveal d4"><div class="fac-img"><div class="fac-img-inner" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80')"></div><div class="fac-img-ov"></div></div><div class="fac-ctag">Technology</div><div class="fac-body"><div class="fac-icon">💻</div><div class="fac-name">Computer &amp; AI Lab</div><div class="fac-desc">400+ workstations with high-speed internet, coding tools, AI software, and robotics kits.</div></div></div>
+      <div class="fac-card reveal d1"><div class="fac-img"><div class="fac-img-inner" style="background-image:url('https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=600&q=80')"></div><div class="fac-img-ov"></div></div><div class="fac-ctag">Arts</div><div class="fac-body"><div class="fac-icon">🎭</div><div class="fac-name">Auditorium &amp; Arts</div><div class="fac-desc">1200-seat auditorium, music rooms, dance studio, and fine arts workshops for creative expression.</div></div></div>
+      <div class="fac-card reveal d2"><div class="fac-img"><div class="fac-img-inner" style="background-image:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80')"></div><div class="fac-img-ov"></div></div><div class="fac-ctag">Smart</div><div class="fac-body"><div class="fac-icon">📡</div><div class="fac-name">Smart Classrooms</div><div class="fac-desc">Interactive boards, projectors, and IoT-enabled classrooms that bring lessons to life every day.</div></div></div>
+      <div class="fac-card reveal d3"><div class="fac-img"><div class="fac-img-inner" style="background-image:url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600&q=80')"></div><div class="fac-img-ov"></div></div><div class="fac-ctag">Safety</div><div class="fac-body"><div class="fac-icon">🚌</div><div class="fac-name">Safe Transport</div><div class="fac-desc">GPS-tracked, AC school buses with trained drivers and attendants covering 40+ routes daily.</div></div></div>
+      <div class="fac-card reveal d4"><div class="fac-img"><div class="fac-img-inner" style="background-image:url('https://images.unsplash.com/photo-1567521464027-f127ff144326?w=600&q=80')"></div><div class="fac-img-ov"></div></div><div class="fac-ctag">Health</div><div class="fac-body"><div class="fac-icon">🏥</div><div class="fac-name">Health &amp; Wellness</div><div class="fac-desc">On-campus medical room, counsellors, and a hygienic cafeteria serving nutritious meals daily.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMICS -->
+<section id="academics">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:16px">
+      <div class="stag">Academics</div>
+      <h2 class="stitle">Our Academic Programs</h2>
+      <p class="ssub">A rigorous yet nurturing curriculum that prepares students for competitive exams and life beyond school.</p>
+    </div>
+    <div class="acad-layout">
+      <div class="acad-tabs reveal rl">
+        <div class="acad-tab active" onclick="switchTab(0,this)"><div class="at-icon">🌱</div><div><div class="at-title">Primary School</div><div class="at-sub">Grade 1 – 5</div></div></div>
+        <div class="acad-tab" onclick="switchTab(1,this)"><div class="at-icon">📖</div><div><div class="at-title">Middle School</div><div class="at-sub">Grade 6 – 8</div></div></div>
+        <div class="acad-tab" onclick="switchTab(2,this)"><div class="at-icon">🎯</div><div><div class="at-title">Secondary School</div><div class="at-sub">Grade 9 – 10</div></div></div>
+        <div class="acad-tab" onclick="switchTab(3,this)"><div class="at-icon">🎓</div><div><div class="at-title">Senior Secondary</div><div class="at-sub">Grade 11 – 12</div></div></div>
+      </div>
+      <div class="reveal rr">
+        <div class="acad-panel active" id="pan0">
+          <div class="panel-hdr"><div class="panel-ptag">Foundation Years</div><div class="panel-ttl">Primary School — Grade 1 to 5</div><div class="panel-dsc">Our foundational program nurtures curiosity and builds core skills through activity-based and experiential learning that makes every child love school.</div></div>
+          <div class="panel-subjs"><div class="subj-item"><div class="subj-dot"></div>English Language Arts</div><div class="subj-item"><div class="subj-dot"></div>Mathematics</div><div class="subj-item"><div class="subj-dot"></div>Environmental Science</div><div class="subj-item"><div class="subj-dot"></div>Hindi &amp; Regional Language</div><div class="subj-item"><div class="subj-dot"></div>Arts &amp; Craft</div><div class="subj-item"><div class="subj-dot"></div>Physical Education</div></div>
+          <div class="panel-feats"><span class="pf-tag">Activity-Based Learning</span><span class="pf-tag">Story-led Lessons</span><span class="pf-tag">No Homework Policy</span><span class="pf-tag">Bilingual Classes</span></div>
+        </div>
+        <div class="acad-panel" id="pan1">
+          <div class="panel-hdr"><div class="panel-ptag">Exploratory Years</div><div class="panel-ttl">Middle School — Grade 6 to 8</div><div class="panel-dsc">Students explore diverse disciplines, develop analytical thinking, and begin specialisation with subject-specialist teachers.</div></div>
+          <div class="panel-subjs"><div class="subj-item"><div class="subj-dot"></div>Advanced Mathematics</div><div class="subj-item"><div class="subj-dot"></div>Science (Phy/Chem/Bio)</div><div class="subj-item"><div class="subj-dot"></div>Social Studies</div><div class="subj-item"><div class="subj-dot"></div>Computer Science</div><div class="subj-item"><div class="subj-dot"></div>English Literature</div><div class="subj-item"><div class="subj-dot"></div>Second Language</div></div>
+          <div class="panel-feats"><span class="pf-tag">Project-Based Learning</span><span class="pf-tag">Olympiad Prep</span><span class="pf-tag">Coding Classes</span><span class="pf-tag">Club Activities</span></div>
+        </div>
+        <div class="acad-panel" id="pan2">
+          <div class="panel-hdr"><div class="panel-ptag">Board Preparation</div><div class="panel-ttl">Secondary School — Grade 9 to 10</div><div class="panel-dsc">CBSE Board preparation with focused academic coaching, regular assessments, and mentored study plans for every student.</div></div>
+          <div class="panel-subjs"><div class="subj-item"><div class="subj-dot"></div>Mathematics</div><div class="subj-item"><div class="subj-dot"></div>Science</div><div class="subj-item"><div class="subj-dot"></div>Social Science</div><div class="subj-item"><div class="subj-dot"></div>English Communicative</div><div class="subj-item"><div class="subj-dot"></div>Hindi / Sanskrit</div><div class="subj-item"><div class="subj-dot"></div>IT / Computer</div></div>
+          <div class="panel-feats"><span class="pf-tag">CBSE Aligned</span><span class="pf-tag">Mock Board Exams</span><span class="pf-tag">Doubt Sessions</span><span class="pf-tag">Career Counselling</span></div>
+        </div>
+        <div class="acad-panel" id="pan3">
+          <div class="panel-hdr"><div class="panel-ptag">Specialisation Stream</div><div class="panel-ttl">Senior Secondary — Grade 11 to 12</div><div class="panel-dsc">Three specialised streams — Science, Commerce, and Humanities — with intensive preparation for JEE, NEET, CA, and all entrance exams.</div></div>
+          <div class="panel-subjs"><div class="subj-item"><div class="subj-dot"></div>Science Stream (PCM/PCB)</div><div class="subj-item"><div class="subj-dot"></div>Commerce Stream</div><div class="subj-item"><div class="subj-dot"></div>Humanities Stream</div><div class="subj-item"><div class="subj-dot"></div>Informatics Practices</div><div class="subj-item"><div class="subj-dot"></div>Physical Education</div><div class="subj-item"><div class="subj-dot"></div>Fine Arts / Music</div></div>
+          <div class="panel-feats"><span class="pf-tag">JEE / NEET Prep</span><span class="pf-tag">Guest Lectures</span><span class="pf-tag">University Guidance</span><span class="pf-tag">Internships</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="gal-head reveal">
+      <div class="stag">Gallery</div>
+      <h2 class="stitle">Life at Sunrise</h2>
+      <p class="ssub">A glimpse into our vibrant campus — classrooms, sports grounds, events and everyday moments.</p>
+    </div>
+    <div class="gal-grid reveal">
+      <div class="gal-item" data-lb="0"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=900&q=80&auto=format&fit=crop')"></div><div class="gal-ov"><div class="gal-zoom">⊕</div></div></div>
+      <div class="gal-item" data-lb="1"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&q=80&auto=format&fit=crop')"></div><div class="gal-ov"><div class="gal-zoom">⊕</div></div></div>
+      <div class="gal-item" data-lb="2"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=80&auto=format&fit=crop')"></div><div class="gal-ov"><div class="gal-zoom">⊕</div></div></div>
+      <div class="gal-item" data-lb="3"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1588072432836-e10032774350?w=900&q=80&auto=format&fit=crop')"></div><div class="gal-ov"><div class="gal-zoom">⊕</div></div></div>
+      <div class="gal-item" data-lb="4"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80&auto=format&fit=crop')"></div><div class="gal-ov"><div class="gal-zoom">⊕</div></div></div>
+      <div class="gal-item" data-lb="5"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80&auto=format&fit=crop')"></div><div class="gal-ov"><div class="gal-zoom">⊕</div></div></div>
+    </div>
+    <div class="gal-carousel reveal">
+      <div class="gal-track" id="galTrack">
+        <div class="gal-ci" data-lb="0"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=70')"></div></div>
+        <div class="gal-ci" data-lb="1"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&q=70')"></div></div>
+        <div class="gal-ci" data-lb="2"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&q=70')"></div></div>
+        <div class="gal-ci" data-lb="3"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1588072432836-e10032774350?w=400&q=70')"></div></div>
+        <div class="gal-ci" data-lb="4"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&q=70')"></div></div>
+        <div class="gal-ci" data-lb="5"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&q=70')"></div></div>
+        <div class="gal-ci" data-lb="0"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&q=70')"></div></div>
+        <div class="gal-ci" data-lb="1"><div class="gbg" style="background-image:url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&q=70')"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lb-close" onclick="closeLB()">✕</button>
+  <button id="lb-prev" onclick="lbNav(-1)">&#8592;</button>
+  <img id="lb-img" src="" alt="Gallery">
+  <button id="lb-next" onclick="lbNav(1)">&#8594;</button>
+</div>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="test-head reveal">
+      <div class="stag" style="color:var(--gold2);border-color:rgba(245,192,74,.35);background:rgba(245,192,74,.1)">Testimonials</div>
+      <h2 class="stitle">What Our Community Says</h2>
+      <p class="ssub">Hear from the students, parents, and alumni who are the heart of Sunrise International School.</p>
+    </div>
+    <div class="test-wrap">
+      <div class="test-track" id="testTrack">
+        <div class="test-card" style="width:clamp(290px,36vw,390px)"><div class="test-stars">★★★★★</div><div class="test-quote">Sunrise School has been life-changing for our daughter. The teachers genuinely care about each student's growth. She transformed from a shy child into a confident leader in just two years.</div><div class="test-author"><div class="test-av">👩</div><div><div class="test-name">Priya Sharma</div><div class="test-role">Parent of Grade 8 Student</div></div></div></div>
+        <div class="test-card" style="width:clamp(290px,36vw,390px)"><div class="test-stars">★★★★★</div><div class="test-quote">I cleared JEE Advanced with AIR 342 — none of it would have been possible without the exceptional Physics and Maths teachers here. The individual attention made all the difference.</div><div class="test-author"><div class="test-av">👨‍🎓</div><div><div class="test-name">Arjun Mehta</div><div class="test-role">Alumni — IIT Delhi, 2023</div></div></div></div>
+        <div class="test-card" style="width:clamp(290px,36vw,390px)"><div class="test-stars">★★★★★</div><div class="test-quote">The infrastructure and teaching methodology at Sunrise is unmatched in the region. My son loves going to school every single day. The sports facilities alone are incredible.</div><div class="test-author"><div class="test-av">👨</div><div><div class="test-name">Rajesh Verma</div><div class="test-role">Parent of Grade 5 Student</div></div></div></div>
+        <div class="test-card" style="width:clamp(290px,36vw,390px)"><div class="test-stars">★★★★★</div><div class="test-quote">Studying here from Grade 1 to 12 was the best thing that happened to me. The values instilled, the friendships made, and the dreams encouraged have shaped who I am today.</div><div class="test-author"><div class="test-av">👩‍🎓</div><div><div class="test-name">Sneha Kapoor</div><div class="test-role">Alumni — AIIMS Delhi, 2024</div></div></div></div>
+        <div class="test-card" style="width:clamp(290px,36vw,390px)"><div class="test-stars">★★★★★</div><div class="test-quote">As a working parent, the transparent communication from teachers and the seamless digital portal give me complete peace of mind about my child's progress at every step.</div><div class="test-author"><div class="test-av">👩</div><div><div class="test-name">Meena Gupta</div><div class="test-role">Parent of Grade 11 Student</div></div></div></div>
+      </div>
+    </div>
+    <div class="test-dots" id="testDots"></div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="container">
+    <div class="reveal" style="margin-bottom:16px">
+      <div class="stag">Events &amp; News</div>
+      <h2 class="stitle">What's Happening at Sunrise</h2>
+      <p class="ssub">Stay updated with the latest events, achievements, and announcements from our school community.</p>
+    </div>
+    <div class="ev-layout">
+      <div class="ev-cards">
+        <div class="ev-card reveal d1"><div class="ev-date"><div class="ev-day">28</div><div class="ev-mo">Mar</div></div><div><div class="ev-ttl">Annual Sports Day 2025</div><div class="ev-dsc">A celebration of athleticism, teamwork, and school spirit with track &amp; field, team sports, and prize distribution.</div><div class="ev-meta"><span>🕘 9:00 AM – 4:00 PM</span><span>📍 School Ground</span></div></div></div>
+        <div class="ev-card reveal d2"><div class="ev-date"><div class="ev-day">05</div><div class="ev-mo">Apr</div></div><div><div class="ev-ttl">Board Result Declaration</div><div class="ev-dsc">Class X and XII CBSE results declared. Felicitation ceremony for top scorers held in the auditorium.</div><div class="ev-meta"><span>🕘 10:00 AM</span><span>📍 Auditorium</span></div></div></div>
+        <div class="ev-card reveal d3"><div class="ev-date" style="background:var(--gold)"><div class="ev-day">15</div><div class="ev-mo">Apr</div></div><div><div class="ev-ttl">Science &amp; Innovation Fair</div><div class="ev-dsc">Annual science exhibition featuring student projects in AI, Robotics, Environment, and Space Technology.</div><div class="ev-meta"><span>🕘 10:00 AM – 5:00 PM</span><span>📍 Main Hall</span></div></div></div>
+        <div class="ev-card reveal d4"><div class="ev-date" style="background:#27ae60"><div class="ev-day">30</div><div class="ev-mo">Apr</div></div><div><div class="ev-ttl">Summer Camp Registration</div><div class="ev-dsc">6-week summer camp offering coding, arts, sports, and leadership workshops for Grades 3–10.</div><div class="ev-meta"><span>🕘 All Day</span><span>📍 Admin Office</span></div></div></div>
+      </div>
+      <div class="ann-panel reveal rr">
+        <div class="ann-title">📋 Latest Announcements</div>
+        <div class="ann-list">
+          <div class="ann-item"><div class="ann-dot" style="background:#27ae60"></div><div><span class="ntag" style="background:rgba(39,174,96,.1);color:#27ae60">Achievement</span><div class="ann-txt">Students win 7 medals at State Science Olympiad 2025 — Congratulations to all participants!</div><div class="ann-date">March 20, 2025</div></div></div>
+          <div class="ann-item"><div class="ann-dot" style="background:var(--gold)"></div><div><span class="ntag" style="background:rgba(232,160,32,.1);color:var(--gold)">Admissions</span><div class="ann-txt">Admissions for Academic Year 2025–26 are now open. Registration closes April 30th.</div><div class="ann-date">March 15, 2025</div></div></div>
+          <div class="ann-item"><div class="ann-dot" style="background:var(--navy)"></div><div><span class="ntag" style="background:rgba(13,43,82,.08);color:var(--navy)">Notice</span><div class="ann-txt">Holiday on April 14 (Dr. Ambedkar Jayanti). School reopens April 15 as per schedule.</div><div class="ann-date">March 12, 2025</div></div></div>
+          <div class="ann-item"><div class="ann-dot" style="background:#9b5de5"></div><div><span class="ntag" style="background:rgba(155,93,229,.1);color:#9b5de5">News</span><div class="ann-txt">New Digital Library inaugurated — access 10,000+ e-books via student portal from April 1.</div><div class="ann-date">March 10, 2025</div></div></div>
+          <div class="ann-item"><div class="ann-dot" style="background:#e74c3c"></div><div><span class="ntag" style="background:rgba(231,76,60,.1);color:#e74c3c">Exam</span><div class="ann-txt">Pre-board examinations for Grade 10 &amp; 12 commence March 25. Admit cards issued.</div><div class="ann-date">March 8, 2025</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:16px">
+      <div class="stag">Contact Us</div>
+      <h2 class="stitle">Get In Touch</h2>
+      <p class="ssub" style="margin:0 auto">Questions about admissions, facilities, or programs? We would love to hear from you.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal rl">
+        <div class="ci-cards">
+          <div class="ci-card"><div class="ci-icon">📍</div><div><div class="ci-lbl">Address</div><div class="ci-val">Sunrise International School<br>123 Education Avenue, Sector 14<br>New Delhi — 110001</div></div></div>
+          <div class="ci-card"><div class="ci-icon">📞</div><div><div class="ci-lbl">Phone</div><div class="ci-val">+91 98765 43210<br>+91 11 2345 6789</div></div></div>
+          <div class="ci-card"><div class="ci-icon">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val">admissions@sunriseschool.edu.in<br>info@sunriseschool.edu.in</div></div></div>
+          <div class="ci-card"><div class="ci-icon">🕘</div><div><div class="ci-lbl">Office Hours</div><div class="ci-val">Monday – Saturday<br>8:00 AM – 4:00 PM</div></div></div>
+        </div>
+        <div class="map-wrap">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.674456666809!2d77.20870!3d28.63530!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd37b741d057%3A0xcdee88e47393c3f1!2sConnaught%20Place%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="220" style="border:0;display:block" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="cf-box reveal rr">
+        <div class="cf-title">Send Us a Message</div>
+        <div class="cf-sub">Our team will respond within 24 hours.</div>
+        <div class="form-row">
+          <div class="fg"><label>Full Name *</label><input type="text" id="fn" placeholder="Your full name"></div>
+          <div class="fg"><label>Phone Number *</label><input type="tel" id="fp" placeholder="+91 XXXXX XXXXX"></div>
+        </div>
+        <div class="fg"><label>Email Address *</label><input type="email" id="fe" placeholder="your@email.com"></div>
+        <div class="fg"><label>Inquiry Type</label><select id="ft"><option value="">Select type</option><option>Admissions Inquiry</option><option>Fee Structure</option><option>Campus Visit</option><option>Academic Query</option><option>General Information</option></select></div>
+        <div class="fg"><label>Message *</label><textarea id="fm" placeholder="Write your message here..."></textarea></div>
+        <button class="cf-submit" onclick="submitForm()">Send Message ✈</button>
+        <div class="cf-ok" id="cfOk">✅ Thank you! We will get back to you within 24 hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+  <div class="container">
+    <div class="nl-inner">
+      <div class="nl-text">
+        <h3 class="stitle">Stay in the Loop 📬</h3>
+        <p>Subscribe for school news, events, and important announcements.</p>
+      </div>
+      <div class="nl-form">
+        <input class="nl-inp" type="email" id="nlMail" placeholder="Enter your email address">
+        <button class="nl-btn" onclick="subNL()">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="fg-grid">
+      <div>
+        <div class="nav-logo" style="margin-bottom:16px"><div class="logo-icon">🎓</div><div><div class="logo-name">Sunrise International</div><div class="logo-sub">School of Excellence</div></div></div>
+        <p class="ft-about">Nurturing brilliance, building character, and shaping the leaders of tomorrow since 1999. CBSE Affiliated — Grades 1 to 12.</p>
+        <div class="social-row">
+          <a href="#" class="soc-btn" title="Instagram">📷</a>
+          <a href="#" class="soc-btn" title="Facebook">👤</a>
+          <a href="#" class="soc-btn" title="YouTube">▶</a>
+          <a href="#" class="soc-btn" title="Twitter">🐦</a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-col-title">Quick Links</div>
+        <div class="ft-links"><a href="#about">About Us</a><a href="#facilities">Facilities</a><a href="#academics">Academics</a><a href="#gallery">Gallery</a><a href="#events">Events</a><a href="#contact">Contact</a></div>
+      </div>
+      <div>
+        <div class="ft-col-title">Academics</div>
+        <div class="ft-links"><a href="#academics">Primary School</a><a href="#academics">Middle School</a><a href="#academics">Secondary School</a><a href="#academics">Senior Secondary</a><a href="#contact">Admissions</a><a href="#contact">Fee Structure</a></div>
+      </div>
+      <div>
+        <div class="ft-col-title">Contact Info</div>
+        <div class="fci">📍 <span>123 Education Avenue, Sector 14, New Delhi — 110001</span></div>
+        <div class="fci">📞 <span>+91 98765 43210</span></div>
+        <div class="fci">✉️ <span>admissions@sunriseschool.edu.in</span></div>
+        <div class="fci">🕘 <span>Mon – Sat: 8AM – 4PM</span></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2025 Sunrise International School. All rights reserved.</p>
+      <p><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Use</a> &nbsp;·&nbsp; <a href="#">CBSE Affiliation: 1234567</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<a id="wa-btn" href="https://wa.me/919876543210" target="_blank" title="Chat on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<button id="stbtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// NAVBAR
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>60);
+  document.getElementById('stbtn').classList.toggle('show',scrollY>400);
+  const ss=['about','facilities','academics','gallery','events','contact'];
+  let c='';ss.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<130)c=id});
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+c));
+});
+function toggleMenu(){document.getElementById('mobMenu').classList.toggle('open')}
+
+// HERO SLIDER
+const SLS=document.querySelectorAll('.slide');
+const HD=document.getElementById('heroDots');
+let si=0,ht;
+SLS.forEach((_,i)=>{const d=document.createElement('button');d.className='hero-dot'+(i===0?' active':'');d.onclick=()=>gS(i);HD.appendChild(d)});
+function gS(n){SLS[si].classList.remove('active');HD.children[si].classList.remove('active');si=(n+SLS.length)%SLS.length;SLS[si].classList.add('active');HD.children[si].classList.add('active');resetHT()}
+function heroSlide(d){gS(si+d)}
+function resetHT(){clearInterval(ht);ht=setInterval(()=>heroSlide(1),5500)}
+resetHT();
+
+// SCROLL REVEAL
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+// COUNTER
+const co=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,tg=+el.dataset.count,sf=el.dataset.suffix||'';let n=0;const s=tg/60,t=setInterval(()=>{n=Math.min(n+s,tg);el.textContent=Math.floor(n).toLocaleString()+sf;if(n>=tg){el.textContent=tg.toLocaleString()+sf;clearInterval(t)}},28);co.unobserve(el)})},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>co.observe(el));
+
+// ACADEMICS TABS
+function switchTab(i,t){document.querySelectorAll('.acad-tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.acad-panel').forEach(p=>p.classList.remove('active'));t.classList.add('active');document.getElementById('pan'+i).classList.add('active')}
+
+// GALLERY LIGHTBOX
+const LBS=['https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=90','https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1200&q=90','https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1200&q=90','https://images.unsplash.com/photo-1588072432836-e10032774350?w=1200&q=90','https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200&q=90','https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=90'];
+let li=0;
+document.querySelectorAll('.gal-item,.gal-ci').forEach(el=>el.addEventListener('click',()=>openLB(+el.dataset.lb)));
+function openLB(i){li=i;document.getElementById('lb-img').src=LBS[i];document.getElementById('lightbox').classList.add('open');document.body.style.overflow='hidden'}
+function closeLB(){document.getElementById('lightbox').classList.remove('open');document.body.style.overflow=''}
+function lbNav(d){openLB((li+d+LBS.length)%LBS.length)}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLB()});
+
+// GALLERY CAROUSEL AUTO-SLIDE
+let gp=0;const gt=document.getElementById('galTrack');
+setInterval(()=>{gp+=256;const mp=(gt.children.length/2)*256;if(gp>=mp)gp=0;gt.style.transform='translateX(-'+gp+'px)'},2800);
+
+// TESTIMONIALS CAROUSEL
+const TC=document.querySelectorAll('.test-card');const TDC=document.getElementById('testDots');let ti=0;
+TC.forEach((_,i)=>{const d=document.createElement('button');d.className='test-dot'+(i===0?' active':'');d.onclick=()=>gT(i);TDC.appendChild(d)});
+function gT(i){ti=i;const cw=TC[0].offsetWidth+24;document.getElementById('testTrack').style.transform='translateX(-'+(i*cw)+'px)';document.querySelectorAll('.test-dot').forEach((d,j)=>d.classList.toggle('active',j===i))}
+setInterval(()=>gT((ti+1)%TC.length),4500);
+
+// CONTACT FORM
+function submitForm(){const n=document.getElementById('fn').value,p=document.getElementById('fp').value,e=document.getElementById('fe').value,m=document.getElementById('fm').value;if(!n||!p||!e||!m){alert('Please fill in all required fields.');return}document.getElementById('cfOk').style.display='block';['fn','fp','fe','fm'].forEach(id=>document.getElementById(id).value='');document.getElementById('ft').value='';setTimeout(()=>document.getElementById('cfOk').style.display='none',5000)}
+
+// NEWSLETTER
+function subNL(){const e=document.getElementById('nlMail');if(!e.value||!e.value.includes('@')){alert('Please enter a valid email.');return}alert('Thank you for subscribing! 🎉');e.value=''}
+
+// KEYBOARD
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1)});
+</script>
+</body>
+</html>
